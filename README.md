@@ -7,7 +7,7 @@ This library provides a set of helper classes, functions and constants in the he
 * `console<T>`: represents a console objects providing operations such as changing the foreground and background colors, the input mode, screen buffer size, title, and others; typedefs for the three consoles are available (`console_in`, `console_out` and `console_err`)
 * manipulating functions that can be used with `cout`/`wcout` and `cin`/`wcin`: `settextcolor()`/`restoretextcolor()`, `setbgcolor()`/`restorebgcolor()`, `setcolors()`, `setmode()`/`clearmode()`, `setposx()`/`setposy()`/`setpos()`.
 
-[demo app](docs/cppconlib1.png)
+[demo app](https://github.com/mariusbancila/cppconlib/blob/master/doc/cppconlib1.png)
 
 ## Requirements
 The library is written with C++11 features and requires Visual Studio 2012 or newer.
@@ -53,7 +53,7 @@ int main()
 } // -> console settings are restored here when the context object goes out of scope
 ```
 Here is the output for this program.
-[example 1](docs/cppconlib2.png)
+[example 1](https://github.com/mariusbancila/cppconlib/blob/master/doc/cppconlib2.png)
 
 The following code prints a rhomb to the console:
 ```
@@ -94,4 +94,4 @@ int main()
    return 0;
 }
 ```
-[example 2](docs/cppconlib3.png)
+[example 2](https://github.com/mariusbancila/cppconlib/blob/master/doc/cppconlib3.png)
