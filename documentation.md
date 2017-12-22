@@ -123,7 +123,7 @@ int main()
    return 0;
 }
 ```
-[example](doc/cppconlib4.png)
+![example](doc/cppconlib4.png)
 
 ## Manipulator functions
 The library also defines a set of free functions to be used in conjunction with `std::cout`/`std::wcout` and `std::cin`/`std::wcin`. These are the same functions available in the console class.
