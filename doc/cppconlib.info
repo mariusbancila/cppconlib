@@ -1,0 +1,97 @@
+== DESCRIPTION ==
+cppconlib provides a small C++11 template library for manipulating the settings of a Windows console (colors, text position, input mode, etc.).
+        
+The library contains a single header file (conmanip.h) and the API consists on a set of template classes and functions (in namespace conmanip).
+
+== WEBSITE ==
+https://github.com/mariusbancila/cppconlib
+
+== SUPPORTED COMPILERS ==
+Visual Studio 2012
+Visual Studio 2013
+
+== DOCUMENTATION ==
+https://cppconlib.codeplex.com/documentation
+ 
+== HOW TO USE ==
+1. Download the latest version of the source code from here (it's small): https://github.com/mariusbancila/cppconlib
+2. Add the header file to your C++ project
+3. Include the header conmanip.h in the source files were you want to use the console API (which are defined in the conmanip namespace)
+
+== EXAMPLES ==
+The following example prints some text in custom colors and then reads text in a different set of colors.
+
+   #include "conmanip.h"
+   using namespace conmanip;
+
+   #include <iostream>
+
+   int main()
+   {
+      // create a console context object, used for restoring console settings
+      console_out_context ctxout;
+      // create a console object
+      console_out conout(ctxout);
+
+      // change the title of the console
+      conout.settitle("cppconlib");
+
+      // output text with colors
+      std::cout 
+         << settextcolor(console_text_colors::light_yellow)
+         << setbgcolor(console_bg_colors::cyan)
+         << "This text is colored: ";
+
+      // read text with colors
+      std::string text;
+      std::cin 
+         >> settextcolor(console_text_colors::cyan)
+         >> setbgcolor(console_bg_colors::light_yellow)
+         >> text;
+
+      std::cout << std::endl;
+
+      // restore console attributes (text and background colors)
+      ctxout.restore(console_cleanup_options::restore_attibutes);
+
+      return 0;
+   } // -> console settings are restored here when the context object goes out of scope
+   
+The following code prints a rhomb to the console:
+
+   int main()
+   {
+      console_out_context ctxout;
+      console_out conout(ctxout);
+
+      conout.settitle("cppconlib");
+
+      int depth;
+      std::cout << "Depth (1-9)? ";
+      std::cin >> depth;
+
+      int middle = conout.getsize().X/2;
+      for(int i = 1; i <= depth; ++i)
+      {
+         std::cout << setposx(middle-i+1);
+
+         for(int j = 1; j<=i; ++j)
+         {
+            std::cout << i << " ";
+         }
+         std::cout << "\n";
+      }
+
+      for(int i = depth-1; i >=1; --i)
+      {
+         std::cout << setposx(middle-i+1);
+
+         for(int j = 1; j<=i; ++j)
+         {
+            std::cout << i << " ";
+         }
+         std::cout << "\n";
+      }
+
+      return 0;
+   }
